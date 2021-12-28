@@ -59,6 +59,11 @@ public class ButtonHandler implements ActionListener, MouseListener {
             }
         }
     }
+    @Override
+    public void mousePressed(MouseEvent arg0) {
+
+    }
+
      @Override
     public void mouseReleased(MouseEvent arg0) {
 
