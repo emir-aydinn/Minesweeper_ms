@@ -20,5 +20,25 @@ public class ButtonHandler implements ActionListener, MouseListener {
         grid = g;
         this.myButtons = myButtons;
     }
-    
+    public void actionPerformed(ActionEvent event) {
+        
+    }
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        
+    }
+     @Override
+    public void mouseReleased(MouseEvent arg0) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent arg0) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent arg0) {
+
+    }
 }
