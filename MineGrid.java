@@ -16,15 +16,40 @@ public class MineGrid {
         placeMines(numMines);
         setMineInformation();
     }
+     public void shareButtons(JButton buttonArray[][]) {
+        buttonInformation = buttonArray;
+        System.out.println("Row : " + buttonInformation.length + " Col : " + buttonInformation[0].length);
+    }
      private void initializeCells() {
-       
+        for (int i = 0; i < mineInformation.length; i++) {
+            for (int j = 0; j < mineInformation[0].length; j++) {
+                mineInformation[i][j] = 0;
+            }
+        }
      }
      private void placeMines(int numMines) {
-       
+        Random random = new Random();
+        for (int i = 0; i < numMines; i++) {
+            int r = random.nextInt(mineInformation.length);
+            int c = random.nextInt(mineInformation[0].length);
+            if (mineInformation[r][c] != MINE) {
+                mineInformation[r][c] = MINE;
+            } else {
+                i--;
+            }
+        }
      }
-     private void setMineInformation() {
-       
-     }
+     public void openRemainCells() {
+
+        for (int i = 0; i < mineInformation.length; i++) {
+            for (int j = 0; j < mineInformation[0].length; j++) {
+                if (buttonInformation[i][j].getText().length()==0) {
+                    buttonInformation[i][j].setText("" + mineInformation[i][j]);
+                }
+
+            }
+        }
+    }
     public boolean isClear() {
         int counter = 0;
         for (int i = 0; i < mineInformation.length; i++) {
