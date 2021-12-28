@@ -21,7 +21,20 @@ public class ButtonHandler implements ActionListener, MouseListener {
         this.myButtons = myButtons;
     }
     public void actionPerformed(ActionEvent event) {
-        
+         if (e.getButton() == MouseEvent.BUTTON3) {
+            JButton button = (JButton) e.getSource();
+            String txt = button.getText();
+            if (txt == "") {
+                button.setText("F");
+                if (grid.isClear()) {
+                    MineSweeperGUI.timer.stop();
+                    JOptionPane.showMessageDialog(null, "Bravo you did it");
+                    
+                }
+            } else if (txt.charAt(0) == 'F') {
+                button.setText("");
+            }
+        }
     }
     @Override
     public void mouseClicked(MouseEvent e) {
