@@ -23,9 +23,10 @@ public class ButtonHandler implements ActionListener, MouseListener {
     public void actionPerformed(ActionEvent event) {
          if (grid.isMINE(row, col)) {
             MineSweeperGUI.timer.stop();
+             grid.showMine();
             JOptionPane.showMessageDialog(null, "OOOPS!!");
-            //System.exit(0);
-            grid.showMine();
+            System.exit(0);
+            
         } else {
             if (event.getSource() instanceof JButton) {
                 JButton button = (JButton) event.getSource();
@@ -40,6 +41,7 @@ public class ButtonHandler implements ActionListener, MouseListener {
         if (grid.isClear()) {
             MineSweeperGUI.timer.stop();
             JOptionPane.showMessageDialog(null, "Bravo you did it");
+             System.exit(0);
         }
     }
     @Override
@@ -51,8 +53,11 @@ public class ButtonHandler implements ActionListener, MouseListener {
                 button.setText("F");
                 if (grid.isClear()) {
                     MineSweeperGUI.timer.stop();
-                    JOptionPane.showMessageDialog(null, "Bravo you did it");
+                    grid.showMine();
                     TestClass.insertSQL();
+                    JOptionPane.showMessageDialog(null, "Bravo you did it");
+                    
+                    System.exit(0);
                 }
             } else if (txt.charAt(0) == 'F') {
                 button.setText("");
