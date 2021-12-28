@@ -21,6 +21,29 @@ public class ButtonHandler implements ActionListener, MouseListener {
         this.myButtons = myButtons;
     }
     public void actionPerformed(ActionEvent event) {
+         if (grid.isMINE(row, col)) {
+            MineSweeperGUI.timer.stop();
+            JOptionPane.showMessageDialog(null, "OOOPS!!");
+            //System.exit(0);
+            grid.showMine();
+        } else {
+            if (event.getSource() instanceof JButton) {
+                JButton button = (JButton) event.getSource();
+                button.setText(String.valueOf(grid.getCellContent(row, col)));
+                if(grid.getCellContent(row,col) == 0)
+                    grid.openNeighbourCells(row, col);
+
+                button.setEnabled(false);
+                button.setBackground(Color.WHITE);
+            }
+        }
+        if (grid.isClear()) {
+            MineSweeperGUI.timer.stop();
+            JOptionPane.showMessageDialog(null, "Bravo you did it");
+        }
+    }
+    @Override
+    public void mouseClicked(MouseEvent e) {
          if (e.getButton() == MouseEvent.BUTTON3) {
             JButton button = (JButton) e.getSource();
             String txt = button.getText();
@@ -35,10 +58,6 @@ public class ButtonHandler implements ActionListener, MouseListener {
                 button.setText("");
             }
         }
-    }
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        
     }
      @Override
     public void mouseReleased(MouseEvent arg0) {
