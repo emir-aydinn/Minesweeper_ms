@@ -52,7 +52,7 @@ public class ButtonHandler implements ActionListener, MouseListener {
                 if (grid.isClear()) {
                     MineSweeperGUI.timer.stop();
                     JOptionPane.showMessageDialog(null, "Bravo you did it");
-                    
+                    TestClass.insertSQL();
                 }
             } else if (txt.charAt(0) == 'F') {
                 button.setText("");
