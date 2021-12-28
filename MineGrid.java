@@ -25,4 +25,40 @@ public class MineGrid {
      private void setMineInformation() {
        
      }
+    
+    public void openNeighbourCells(int r, int c) {
+        if (r < 0 || r >= TestClass.SIZE || c < 0 || c >= TestClass.SIZE || buttonInformation[r][c].isEnabled() == false) {
+            return;
+        } else if (mineInformation[r][c] != 0) {
+            buttonInformation[r][c].setText((String.valueOf(mineInformation[r][c])));
+            buttonInformation[r][c].setEnabled(false);
+        } else {
+            buttonInformation[r][c].setEnabled(false);
+            openNeighbourCells(r - 1, c);
+            openNeighbourCells(r + 1, c);
+            openNeighbourCells(r, c - 1);
+            openNeighbourCells(r, c + 1);
+            openNeighbourCells(r + 1, c + 1);
+            openNeighbourCells(r - 1, c + 1);
+            openNeighbourCells(r - 1, c - 1);
+            openNeighbourCells(r + 1, c - 1);
+        }
+    }
+
+
+    public int getCellContent(int i, int j) {
+        return mineInformation[i][j];
+    }
+
+    private void incrementMineCountAt(int i, int j) {
+        if (isInsideGrid(i, j) && !isMINE(i, j)) {
+            mineInformation[i][j]++;
+        }
+    }
+
+    private boolean isInsideGrid(int i, int j) {
+        return (i >= 0 && i < mineInformation.length)
+                && (j >= 0 && j < mineInformation[0].length);
+    }
+
 }
