@@ -25,6 +25,68 @@ public class MineGrid {
      private void setMineInformation() {
        
      }
+    public boolean isClear() {
+        int counter = 0;
+        for (int i = 0; i < mineInformation.length; i++) {
+            for (int j = 0; j < mineInformation[0].length; j++) {
+                if (buttonInformation[i][j].getText().length()== 0) {
+                    continue;
+                }
+                if ((buttonInformation[i][j].getText().charAt(0) == 'F' && mineInformation[i][j] == -1)
+                        || (buttonInformation[i][j].getText().charAt(0) == '-')) {
+                    counter++;
+                }
+            }
+        }
+        System.out.println("Count : " + counter);
+        if (counter == numOfMine) {
+            openRemainCells();
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isMINE(int i, int j) {
+        return mineInformation[i][j] == MINE;
+    }
+
+    private void setMineInformation() {
+        for (int i = 0; i < mineInformation.length; i++) {
+            for (int j = 0; j < mineInformation[0].length; j++) {
+                if (mineInformation[i][j] == MINE) {
+                    incrementMineCountAt(i - 1, j - 1);
+                    incrementMineCountAt(i - 1, j);
+                    incrementMineCountAt(i - 1, j + 1);
+
+                    incrementMineCountAt(i, j - 1);
+                    incrementMineCountAt(i, j + 1);
+
+                    incrementMineCountAt(i + 1, j - 1);
+                    incrementMineCountAt(i + 1, j);
+                    incrementMineCountAt(i + 1, j + 1);
+                }
+            }
+        }
+    }
+public void showMine(){
+        String s=System.getProperty("user.dir");
+        s+="/Data/rsz_unnamed.png";
+    ImageIcon TmpIcon=new ImageIcon(s);
+    for(int r=0; r<mineInformation.length; r++){
+        for(int c=0; c<mineInformation[0].length; c++){
+            if(mineInformation[r][c]==-1){
+                
+               
+                 buttonInformation[r][c].setIcon(TmpIcon);
+                  
+            }
+        }
+    }
+}
+    
+    
+    
     
     public void openNeighbourCells(int r, int c) {
         if (r < 0 || r >= TestClass.SIZE || c < 0 || c >= TestClass.SIZE || buttonInformation[r][c].isEnabled() == false) {
