@@ -9,8 +9,8 @@ public class MineSweeperGUI extends JPanel {
   public int col, row;
   public JButton[][] myButton;
   public static Timer timer;
-  private int seconds = 0;
-  private int minutes = 0;
+  public static int seconds = 0;
+  public static int minutes = 0;
   final private int delay = 1000;
   public static String username;
   JTextField counter = new JTextField();
